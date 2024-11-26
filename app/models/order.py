@@ -11,5 +11,5 @@ class Order(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     product_id = Column(Integer, ForeignKey("products.id"))
 
-    user = relationship("User", back_populates="orders")  
+    owner = relationship("User", back_populates="orders") 
     product = relationship("Product", back_populates="orders") 
