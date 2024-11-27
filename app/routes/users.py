@@ -91,9 +91,11 @@ def update_user(id: int, user_update: UserUpdate, db: Session = Depends(get_db),
     return crud.update_user(id, user_update, db)
 
 
+
 @user_router.patch("/{id}", response_model=User)
 def partial_update_user(id: int, user_update: UserUpdate, db: Session = Depends(get_db), current_user: UserModel = Depends(get_current_user)):
     return crud.partial_update(id, user_update, db)
+
 
 @user_router.delete("/{id}", response_model=dict)
 def delete_user(id: int, db: Session = Depends(get_db), current_user: UserModel = Depends(get_current_user)):

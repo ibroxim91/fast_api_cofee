@@ -16,7 +16,8 @@ class User(Base):
     phone = Column(String, index=True)
     verification_code = Column(String)
     is_admin = Column(Boolean, default=False)
-    orders = relationship("Order", back_populates="owner")  
+    orders = relationship("Order", back_populates="owner") 
+    cart_items = relationship("Cart", back_populates="owner") 
 
     def verify_password(self, plain_password):
         return pwd_context.verify(plain_password, self.hashed_password)

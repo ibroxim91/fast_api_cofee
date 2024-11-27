@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-from schemas.category import Category
+from .category import Category
 
 class ProductBase(BaseModel):
     name: str

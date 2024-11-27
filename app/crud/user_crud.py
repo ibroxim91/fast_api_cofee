@@ -1,10 +1,9 @@
 import bcrypt
 from app import get_db
-from fastapi import  Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.schemas import  UserCreate, UserBase,UserUpdate
 from app.models import User as UserModel
-from fastapi import HTTPException, status
+from fastapi import HTTPException, Depends, status
 from app.utils import get_random_verification_code
 from app.external_service import SmsSend
 
@@ -12,8 +11,8 @@ from app.external_service import SmsSend
 
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     # Check if user already exists by username or email
-    db_user_by_username = db.query(UserModel).filter(UserModel.username == user.username).first()
     db_user_by_email = db.query(UserModel).filter(UserModel.email == user.email).first()
+    db_user_by_username = db.query(UserModel).filter(UserModel.username == user.username).first()
 
     if db_user_by_username:
         raise HTTPException(
@@ -34,6 +33,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
         email=user.email,
         phone=user.phone,
         hashed_password=hashed_password.decode('utf-8'),
+        # is_admin=True, # True if admin
         verification_code=get_random_verification_code()  # Generate a random verification code for sms verification
     )
     db.add(db_user)

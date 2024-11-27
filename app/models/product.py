@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from app import Base
+from .order import order_products
 
 
 class Product(Base):
@@ -13,4 +14,8 @@ class Product(Base):
     category_id = Column(Integer, ForeignKey("categories.id"))
 
     category = relationship("Category", back_populates="products")  
-    orders = relationship("Order", back_populates="product")  
+    orders = relationship(
+        "Order",
+        secondary=order_products,
+        back_populates="products"
+    )

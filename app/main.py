@@ -6,6 +6,8 @@ from .routes import *
 app = FastAPI()
 app.include_router(user_router, prefix="/users", tags=["users"])
 app.include_router(category_router, prefix="/category", tags=["category"])
+app.include_router(product_router, prefix="/product", tags=["product"])
+app.include_router(cart_router, prefix="/cart", tags=["cart"])
 
 def init_db():
     print("Creating tables...")

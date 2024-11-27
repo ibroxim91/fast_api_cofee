@@ -10,7 +10,8 @@ class CategoryCreate(CategoryBase):
 
 class Category(CategoryBase):
     id: int
-    products: List["Product"] = []
+    description: Optional[str] = None
+    # products: List["Product"] = []
 
     class Config:
         orm_mode = True  
