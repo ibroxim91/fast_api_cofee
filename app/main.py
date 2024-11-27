@@ -1,13 +1,11 @@
-from app import Base, engine, get_db
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy.orm import Session
-from .schemas import User, UserCreate, UserBase
-from .models import User as UserModel
-from fastapi import HTTPException, status
+from app import Base, engine
+from fastapi import FastAPI
+
 from .routes import *
 
 app = FastAPI()
 app.include_router(user_router, prefix="/users", tags=["users"])
+app.include_router(category_router, prefix="/category", tags=["category"])
 
 def init_db():
     print("Creating tables...")

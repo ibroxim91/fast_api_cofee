@@ -13,4 +13,6 @@ class Category(CategoryBase):
     products: List["Product"] = []
 
     class Config:
-        orm_mode = True  # SQLAlchemy obyektlarini ishlatish uchun
+        orm_mode = True  
+
+    
