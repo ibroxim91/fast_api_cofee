@@ -42,6 +42,10 @@ CRUD операции для управления товарами и катег
 
 Документация API через Swagger UI.
 
+## Postman Collection:
+
+FastApi_coffe_shop_POSTMAN_collection.json
+
 
 ## Docker:
 
