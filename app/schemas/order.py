@@ -1,11 +1,32 @@
 from pydantic import BaseModel
 from typing import Optional
-from schemas.product import Product
-from schemas.user import User
+from .product import Product
+from .user import User
+from typing import List
+
+
+__all__ = [
+    "OrderBase",
+    "OrderCreate",
+    "Order",
+]
+
+class ProductBase(BaseModel):
+    id: int
+    name: str
+    price: float
+
+    class Config:
+        orm_mode = True
 
 class OrderBase(BaseModel):
-    quantity: int
+    id: int
     total_price: float
+    products: List[ProductBase]
+
+    class Config:
+        orm_mode = True
+
 
 class OrderCreate(OrderBase):
     user_id: int

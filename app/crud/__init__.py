@@ -3,3 +3,4 @@ from .category_crud import create_category , category_detail, all_categories, up
 from .product_crud import *
 from .cart_crud import *
 from .order_crud import *
+from .chat_crud import *

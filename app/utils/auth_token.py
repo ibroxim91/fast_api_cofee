@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = os.getenv('JWT_ALGORITHM')
 
 
-# JWT yaratish funksiyasi
+# JWT Creation
 def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes=90)):
     to_encode = data.copy()
     expire = datetime.utcnow() + expires_delta
@@ -23,7 +23,7 @@ def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-# JWT tasdiqlash funksiyasi
+# JWT Verification
 def verify_access_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -49,7 +49,7 @@ def get_current_user(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    # 'Bearer <token>' formatidan faqat tokenni ajratib olish
+    # 'Bearer <token>' 
     if not authorization.startswith("Bearer "):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -57,7 +57,7 @@ def get_current_user(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    token = authorization.split(" ")[1]  # Tokenni "Bearer" so'zidan ajratib olish
+    token = authorization.split(" ")[1]  
 
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
