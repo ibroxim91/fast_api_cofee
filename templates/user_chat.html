@@ -12,7 +12,7 @@
 
     <script>
         const username = prompt("Enter your username");
-        const ws = new WebSocket(`ws://localhost:8080/ws/chat/${username}`);
+        const ws = new WebSocket(`ws://localhost:8080/chat/ws/chat/${username}`);
 
         ws.onmessage = function(event) {
             const messages = document.getElementById('messages');

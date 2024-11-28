@@ -2,8 +2,13 @@ from app import Base, engine
 from fastapi import FastAPI
 from .routes import *
 from app import auth
+from fastapi.staticfiles import StaticFiles
+
+
+
 
 app = FastAPI()
+app.mount("/media", StaticFiles(directory="media"), name="media")
 
 
 app.include_router(user_router, prefix="/users", tags=["users"])
