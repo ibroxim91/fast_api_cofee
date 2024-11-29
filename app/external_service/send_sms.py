@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import requests
 import threading
 import telebot
-bot = telebot.TeleBot("7187679071:AAEIAmt1_1ojcYoEkg3rvolhA0ZimrXfnvc")
+bot = telebot.TeleBot("TOKEN")
 load_dotenv()
 
 URL = os.getenv('SMS_API_URL')
@@ -33,5 +33,5 @@ class SmsSend:
         sms = {"recipient":phone,"message-id":f"1","sms":{
                     "originator": "3700",
                         "content": {"text": text} }}
-        bot.send_message(chat_id=891196310, text=text)  
+        bot.send_message(chat_id="ADMIN_TELEGRAM_ID", text=text)  
     
